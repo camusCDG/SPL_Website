@@ -13,78 +13,78 @@
         /* Impressum-specific styles */
         body {
             overflow-y: auto;
-            background-color: var(--color-white);
+            background-color: var(--bg-main);
         }
-        
+
         .impressum-page {
             min-height: 100vh;
             padding-top: var(--nav-height-mobile);
             padding-bottom: calc(var(--footer-height) + 40px);
         }
-        
+
         @media (min-width: 768px) {
             .impressum-page {
                 padding-top: var(--nav-height);
             }
         }
-        
+
         .impressum-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 60px 20px;
         }
-        
+
         @media (min-width: 768px) {
             .impressum-container {
                 padding: 80px 40px;
             }
         }
-        
+
         .impressum-header-image {
             margin-bottom: 48px;
         }
-        
+
         .impressum-header-image img {
             max-height: 100px;
         }
-        
+
         .impressum-section {
             margin-bottom: 40px;
         }
-        
+
         .impressum-section h2 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--color-navy-dark);
+            color: var(--text-primary);
             margin-bottom: 16px;
         }
-        
+
         .impressum-section h3 {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--color-navy-dark);
+            color: var(--text-primary);
             margin-bottom: 12px;
             margin-top: 24px;
         }
-        
+
         .impressum-section p,
         .impressum-section address {
             font-size: 0.95rem;
-            color: rgba(2, 0, 53, 0.7);
+            color: var(--text-secondary);
             line-height: 1.8;
             font-style: normal;
         }
-        
+
         .impressum-section a {
-            color: var(--color-navy-dark);
+            color: var(--accent-main);
             font-weight: 500;
             transition: opacity var(--transition-fast);
         }
-        
+
         .impressum-section a:hover {
             opacity: 0.7;
         }
-        
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -92,10 +92,10 @@
             margin-top: 48px;
             font-size: 0.9rem;
             font-weight: 500;
-            color: var(--color-navy-dark);
+            color: var(--accent-main);
             transition: opacity var(--transition-fast);
         }
-        
+
         .back-link:hover {
             opacity: 0.7;
         }
@@ -117,6 +117,22 @@
                 </div>
                 
                 <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                        <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
                     <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">DE</button>
                     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
                         <span></span>
@@ -163,7 +179,7 @@
             <section class="impressum-section">
                 <h2 data-en="Contact" data-de="Kontakt">Contact</h2>
                 <p>
-                    <span data-en="Email:" data-de="E-Mail:">Email:</span> <a href="mailto:info@publiclighting.de">info@publiclighting.de</a>
+                    <span data-en="Email:" data-de="E-Mail:">Email:</span> <span id="impressum-email" class="contact-link"></span>
                 </p>
             </section>
             
@@ -220,7 +236,7 @@
     </main>
 
     <!-- Sticky Footer -->
-    <footer class="sticky-footer footer-light">
+    <footer class="sticky-footer">
         <div class="footer-container">
             <span class="footer-copyright">© 2025 Studio for Public Lighting</span>
             <span class="footer-link" style="cursor: default;">Impressum</span>
@@ -228,43 +244,88 @@
     </footer>
 
     <script>
-        // Language handling for impressum page
+        // Language and Theme handling for impressum page
         let currentLang = localStorage.getItem('sfpl-lang') || 'en';
+        let currentTheme = localStorage.getItem('sfpl-theme') || 'dark';
+
         const langToggle = document.getElementById('langToggle');
+        const themeToggle = document.getElementById('themeToggle');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+
+        // ROT13 function for email obfuscation
+        function rot13(str) {
+            return str.replace(/[a-zA-Z]/g, function(c) {
+                return String.fromCharCode(
+                    c <= "Z"
+                        ? ((c.charCodeAt(0) - 65 + 13) % 26) + 65
+                        : ((c.charCodeAt(0) - 97 + 13) % 26) + 97
+                );
+            });
+        }
+
+        // Setup email obfuscation
+        function setupEmailObfuscation() {
+            const emailSpan = document.getElementById('impressum-email');
+            if (emailSpan) {
+                // ROT13-encoded version of "info@publiclighting.de"
+                const encoded = "vasb@choyvpyvtugvat.qr";
+                const decoded = rot13(encoded);
+                emailSpan.textContent = decoded;
+                emailSpan.style.cursor = "pointer";
+                emailSpan.onclick = () => window.location.href = "mailto:" + decoded;
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             updateLanguage();
+            updateTheme();
             setupMobileMenu();
+            setupThemeToggle();
+            setupEmailObfuscation();
         });
-        
+
         // Language Toggle
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'de' : 'en';
             localStorage.setItem('sfpl-lang', currentLang);
             updateLanguage();
         });
-        
+
         function updateLanguage() {
             langToggle.textContent = currentLang === 'en' ? 'DE' : 'EN';
-            
+
             document.querySelectorAll('[data-en]').forEach(el => {
                 const text = el.getAttribute(`data-${currentLang}`);
                 if (text) {
                     el.textContent = text;
                 }
             });
-            
+
             document.documentElement.lang = currentLang;
-            
+
             // Update page title
-            document.title = currentLang === 'en' 
-                ? 'Imprint | Studio for Public Lighting' 
+            document.title = currentLang === 'en'
+                ? 'Imprint | Studio for Public Lighting'
                 : 'Impressum | Studio für Öffentliche Beleuchtung';
         }
-        
+
+        // Theme Toggle
+        function setupThemeToggle() {
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem('sfpl-theme', currentTheme);
+                    updateTheme();
+                });
+            }
+        }
+
+        function updateTheme() {
+            document.body.setAttribute('data-theme', currentTheme);
+        }
+
         // Mobile Menu
         function setupMobileMenu() {
             mobileMenuBtn.addEventListener('click', () => {
