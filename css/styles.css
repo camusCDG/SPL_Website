@@ -150,7 +150,9 @@ img {
     left: 0;
     right: 0;
     z-index: 100;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-container {
@@ -212,14 +214,14 @@ img {
 .nav-link {
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--color-gray-dark);
+    color: rgba(2, 0, 53, 0.6);
     letter-spacing: 0.05em;
     transition: color var(--transition-fast);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--color-white);
+    color: var(--color-navy-dark);
 }
 
 .nav-actions {
@@ -230,17 +232,17 @@ img {
 
 .lang-toggle {
     padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(2, 0, 53, 0.3);
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
-    color: var(--color-gray-dark);
+    color: rgba(2, 0, 53, 0.6);
     transition: all var(--transition-fast);
 }
 
 .lang-toggle:hover {
-    border-color: var(--color-white);
-    color: var(--color-white);
+    border-color: var(--color-navy-dark);
+    color: var(--color-navy-dark);
 }
 
 /* Mobile Menu Button */
@@ -258,7 +260,7 @@ img {
     display: block;
     width: 100%;
     height: 2px;
-    background-color: var(--color-white);
+    background-color: var(--color-navy-dark);
     transition: all var(--transition-fast);
 }
 
@@ -321,7 +323,7 @@ img {
    ============================================= */
 
 .main-container {
-    padding-bottom: var(--footer-height);
+    /* No padding needed since footer is no longer fixed */
 }
 
 .section {
@@ -382,7 +384,7 @@ img {
 .constellation-fixed {
     position: fixed;
     left: 20px;
-    bottom: calc(var(--footer-height) + 30px);
+    bottom: 30px;
     z-index: 10;
     width: 80px;
     opacity: 0.15;
@@ -397,7 +399,7 @@ img {
 @media (min-width: 768px) {
     .constellation-fixed {
         left: 40px;
-        bottom: calc(var(--footer-height) + 50px);
+        bottom: 50px;
         width: 120px;
     }
 }
@@ -481,15 +483,22 @@ img {
     z-index: 1;
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+    .hero-content {
+        padding-bottom: 100px;
+    }
 }
 
 .hero-center {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     gap: 24px;
     max-width: 800px;
 }
@@ -675,8 +684,17 @@ img {
     font-size: 0.9rem;
 }
 
-/* Hide placeholder when image loads */
-.header-img:not([src=""]):not([src*="placeholder"]) + .header-placeholder {
+/* Hide header-img when it fails to load (placeholder will show) */
+.header-img {
+    display: none;
+}
+
+/* Show header-img only when it successfully loads - controlled by JS */
+.header-img.loaded {
+    display: block;
+}
+
+.header-img.loaded + .header-placeholder {
     display: none;
 }
 
@@ -899,7 +917,7 @@ img {
    ============================================= */
 
 .section-projects {
-    background-color: var(--color-navy-dark);
+    background-color: var(--color-gray-medium);
     padding-top: var(--nav-height-mobile);
 }
 
@@ -956,7 +974,7 @@ img {
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
-    background-color: var(--color-navy-deeper);
+    background-color: rgba(2, 0, 53, 0.08);
 }
 
 .project-image {
@@ -981,13 +999,13 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(2, 0, 53, 0.2);
 }
 
 .project-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--color-navy-dark) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(2, 0, 53, 0.9) 0%, transparent 60%);
     opacity: 0.85;
 }
 
@@ -1037,7 +1055,7 @@ img {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(2, 0, 53, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1095,8 +1113,9 @@ img {
 
 @media (min-width: 992px) {
     .contact-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 2fr;
         gap: 60px;
+        align-items: start;
     }
 }
 
@@ -1104,6 +1123,12 @@ img {
     .contact-grid {
         gap: 80px;
     }
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contact-profile {
@@ -1211,19 +1236,19 @@ img {
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
 }
 
 @media (min-width: 576px) {
     .contact-links {
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
-        gap: 32px;
+        gap: 20px;
     }
 }
 
 .contact-link {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-navy-dark);
     font-weight: 500;
     transition: opacity var(--transition-fast);
@@ -1233,18 +1258,29 @@ a.contact-link:hover {
     opacity: 0.7;
 }
 
+.contact-email {
+    font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .contact-email {
+        font-size: 1.5rem;
+    }
+}
+
 .contact-address {
     display: flex;
     flex-direction: column;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: rgba(2, 0, 53, 0.7);
+    line-height: 1.6;
 }
 
-/* LinkedIn Icon */
+/* LinkedIn Icon with text */
 .contact-linkedin {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
 }
 
 .contact-linkedin svg {
@@ -1313,17 +1349,152 @@ a.contact-link:hover {
 }
 
 /* =============================================
-   STICKY FOOTER
+   ABOUT ME SECTION
+   ============================================= */
+
+.section-about {
+    background-color: var(--color-navy-dark);
+    padding-top: var(--nav-height-mobile);
+}
+
+@media (min-width: 768px) {
+    .section-about {
+        padding-top: var(--nav-height);
+    }
+}
+
+.section-about > .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+@media (min-width: 992px) {
+    .section-about > .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+/* About Me section header placeholder - dark theme */
+.section-about .header-placeholder {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .about-grid {
+        gap: 80px;
+    }
+}
+
+.about-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-name {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--color-white);
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .about-name {
+        font-size: 2rem;
+    }
+}
+
+.about-photo-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 576px) {
+    .about-photo-bio {
+        flex-direction: row;
+        gap: 24px;
+    }
+}
+
+.about-photo {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .about-photo {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+.about-photo .photo-placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.about-bio {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+}
+
+.about-cv {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.about-cv .cv-section h4 {
+    color: var(--color-white);
+}
+
+.about-cv .cv-section li {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.about-cv .thesis-title {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* =============================================
+   FOOTER (Static at bottom)
    ============================================= */
 
 .sticky-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     z-index: 90;
     height: var(--footer-height);
-    background-color: transparent;
+    background-color: var(--color-navy-dark);
 }
 
 .footer-container {
@@ -1356,19 +1527,6 @@ a.contact-link:hover {
 .footer-copyright {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.6);
-}
-
-/* Footer adaptive colors for light backgrounds */
-.sticky-footer.footer-light .footer-link {
-    color: rgba(2, 0, 53, 0.5);
-}
-
-.sticky-footer.footer-light .footer-link:hover {
-    color: var(--color-navy-dark);
-}
-
-.sticky-footer.footer-light .footer-copyright {
-    color: rgba(2, 0, 53, 0.5);
 }
 
 /* =============================================
