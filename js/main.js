@@ -178,6 +178,14 @@ function updateLanguage() {
         }
     });
 
+    // Update header SVG images based on language
+    document.querySelectorAll('.header-svg').forEach(img => {
+        const newSrc = img.getAttribute(`data-${currentLang}-src`);
+        const newAlt = img.getAttribute(`data-${currentLang}-alt`);
+        if (newSrc) img.src = newSrc;
+        if (newAlt) img.alt = newAlt;
+    });
+
     // Update HTML lang attribute
     document.documentElement.lang = currentLang;
 }

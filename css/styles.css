@@ -892,72 +892,45 @@ body[data-theme="light"] .btn-offset:hover {
    SECTION HEADERS (Image Placeholders)
    ============================================= */
 
+/* Section Header Images - Consistent responsive heights */
 .section-header-image {
     margin-bottom: 24px;
     position: relative;
+    height: 50px; /* Fixed height for consistent layout */
 }
 
 @media (min-width: 768px) {
     .section-header-image {
         margin-bottom: 32px;
-    }
-}
-
-.header-img {
-    max-height: 80px;
-    width: auto;
-    display: block;
-}
-
-@media (min-width: 768px) {
-    .header-img {
-        max-height: 100px;
+        height: 70px;
     }
 }
 
 @media (min-width: 1200px) {
-    .header-img {
-        max-height: 120px;
+    .section-header-image {
+        height: 90px;
     }
 }
 
-.header-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 30px 40px;
-    background-color: #3a3a3a;
-    border-radius: 4px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
-    min-height: 100px;
-}
-
-@media (min-width: 768px) {
-    .header-placeholder {
-        min-height: 120px;
+@media (min-width: 1600px) {
+    .section-header-image {
+        height: 110px;
     }
 }
 
-.header-placeholder .placeholder-label {
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-/* Hide header-img when it fails to load (placeholder will show) */
 .header-img {
-    display: none;
-}
-
-/* Show header-img only when it successfully loads - controlled by JS */
-.header-img.loaded {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
     display: block;
+    object-fit: contain;
+    object-position: left center;
 }
 
-.header-img.loaded + .header-placeholder {
-    display: none;
+/* SVG headers - ensure proper rendering */
+.header-svg {
+    height: 100%;
+    width: auto;
 }
 
 /* =============================================

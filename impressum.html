@@ -42,10 +42,33 @@
 
         .impressum-header-image {
             margin-bottom: 48px;
+            height: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .impressum-header-image {
+                height: 70px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .impressum-header-image {
+                height: 90px;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .impressum-header-image {
+                height: 110px;
+            }
         }
 
         .impressum-header-image img {
-            max-height: 100px;
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            display: block;
+            object-fit: contain;
         }
 
         .impressum-section {
@@ -154,13 +177,9 @@
     <!-- Main Content -->
     <main class="impressum-page">
         <div class="impressum-container">
-            <!-- Header Image Placeholder -->
+            <!-- Header Image -->
             <div class="impressum-header-image">
-                <img src="images/headers/header-impressum.png" alt="" class="header-img">
-                <div class="header-placeholder" style="display: block;">
-                    <span>Header: "Impressum" / "Imprint"</span>
-                    <span class="placeholder-size">600 x 120px</span>
-                </div>
+                <img src="images/headers/Imprint.svg" alt="Imprint" class="header-img header-svg" data-en-src="images/headers/Imprint.svg" data-de-src="images/headers/Impressum.svg" data-en-alt="Imprint" data-de-alt="Impressum">
             </div>
             
             <!-- Responsible -->
@@ -301,6 +320,14 @@
                 if (text) {
                     el.textContent = text;
                 }
+            });
+
+            // Update header SVG images based on language
+            document.querySelectorAll('.header-svg').forEach(img => {
+                const newSrc = img.getAttribute(`data-${currentLang}-src`);
+                const newAlt = img.getAttribute(`data-${currentLang}-alt`);
+                if (newSrc) img.src = newSrc;
+                if (newAlt) img.alt = newAlt;
             });
 
             document.documentElement.lang = currentLang;
