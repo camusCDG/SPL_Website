@@ -254,16 +254,8 @@ function updateActiveSection(sectionId) {
     }
 
     // Update footer color based on section background
-    const footer = document.getElementById('stickyFooter');
-    if (footer) {
-        // Light backgrounds: services, contact
-        const lightSections = ['services', 'contact'];
-        if (lightSections.includes(sectionId)) {
-            footer.classList.add('footer-light');
-        } else {
-            footer.classList.remove('footer-light');
-        }
-    }
+    // Footer is now static at bottom, so this is no longer needed
+    // but keeping for potential future use
 }
 
 // Scroll behavior - different for mobile/tablet vs desktop
