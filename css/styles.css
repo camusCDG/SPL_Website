@@ -52,24 +52,85 @@
     font-display: swap;
 }
 
-/* CSS Variables - Brand Colors */
+/* =========================================
+   CSS Variables - Brand Identity System
+   "Architectural Precision, Organic Warmth"
+   ========================================= */
 :root {
-    --color-navy-dark: #020035;
-    --color-navy-deeper: #01001a;
-    --color-gray-dark: #C6C6C6;
-    --color-gray-medium: #E6E6E6;
-    --color-gray-light: #F2F2F2;
-    --color-white: #FFFFFF;
-    
-    --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    
+    /* FONTS */
+    --font-display: 'Inter Tight', sans-serif;
+    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-primary: var(--font-body);
+
+    /* PHYSICS CONSTANTS */
+    --ease-architectural: cubic-bezier(0.25, 1, 0.5, 1);
+    --anim-speed: 0.3s;
+
+    /* Legacy transition variables */
     --transition-fast: 0.2s ease;
     --transition-medium: 0.3s ease;
     --transition-slow: 0.5s ease;
-    
+
+    /* Layout */
     --nav-height: 80px;
     --nav-height-mobile: 60px;
     --footer-height: 50px;
+}
+
+/* =========================================
+   DARK THEME (Default) - "The Night City"
+   ========================================= */
+body, body[data-theme="dark"] {
+    /* Core Colors */
+    --bg-main: #0E1116;           /* Midnight Carbon - Primary Background */
+    --bg-surface: #181B21;        /* Deep Surface - Cards, UI Elements */
+    --text-primary: #F2F2F2;      /* Off-White - Headings */
+    --text-secondary: #9CA3AF;    /* Steel Grey - Body Text */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --accent-main: #C8A165;       /* Burnished Brass - Primary Accent */
+
+    /* Legacy color mappings */
+    --color-navy-dark: #0E1116;
+    --color-navy-deeper: #181B21;
+    --color-gray-dark: #9CA3AF;
+    --color-gray-medium: #181B21;
+    --color-gray-light: #1E2229;
+    --color-white: #F2F2F2;
+
+    /* Deep Layered Shadow (Dark Mode) */
+    --shadow-depth: 0 2px 4px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.3);
+    --shadow-hover: 0 4px 8px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.4);
+
+    /* Atmospheric Haze Glow */
+    --glow-effect: 0 0 40px rgba(200, 161, 101, 0.5);
+}
+
+/* =========================================
+   LIGHT THEME - "The Studio"
+   ========================================= */
+body[data-theme="light"] {
+    /* Core Colors */
+    --bg-main: #F2F1ED;           /* Architectural Mist - Primary Background */
+    --bg-surface: #FFFFFF;        /* Pure White - Cards */
+    --text-primary: #15171C;      /* Deep Charcoal - Headings */
+    --text-secondary: #64748B;    /* Warm Slate - Body Text */
+    --border-color: rgba(0, 0, 0, 0.06);
+    --accent-main: #D8B277;       /* Bright Brass - Primary Accent */
+
+    /* Legacy color mappings */
+    --color-navy-dark: #15171C;
+    --color-navy-deeper: #0E1116;
+    --color-gray-dark: #64748B;
+    --color-gray-medium: #FFFFFF;
+    --color-gray-light: #F2F1ED;
+    --color-white: #FFFFFF;
+
+    /* Deep Layered Shadow (Light Mode - More subtle) */
+    --shadow-depth: 0 2px 4px rgba(0,0,0,0.05), 0 8px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 8px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.1);
+
+    /* Haze Glow (Subtle in light mode) */
+    --glow-effect: 0 0 30px rgba(216, 178, 119, 0.4);
 }
 
 /* Reset & Base */
@@ -87,10 +148,17 @@ html {
 }
 
 body {
-    font-family: var(--font-primary);
+    font-family: var(--font-body);
     line-height: 1.6;
-    color: var(--color-navy-dark);
-    background-color: var(--color-navy-dark);
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 a {
@@ -158,9 +226,14 @@ img {
 
 /* Nav visible state (when scrolled) */
 .nav.nav-visible {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(24, 27, 33, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+/* Light theme nav visible state */
+body[data-theme="light"] .nav.nav-visible {
+    background-color: rgba(255, 255, 255, 0.92);
 }
 
 /* Hide all nav elements initially except lang toggle */
@@ -245,14 +318,24 @@ img {
 .nav-link {
     font-size: 0.9rem;
     font-weight: 500;
-    color: rgba(2, 0, 53, 0.6);
+    color: rgba(242, 242, 242, 0.7);
     letter-spacing: 0.05em;
     transition: color var(--transition-fast);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--color-navy-dark);
+    color: var(--accent-main);
+}
+
+/* Light theme nav links */
+body[data-theme="light"] .nav-link {
+    color: rgba(21, 23, 28, 0.6);
+}
+
+body[data-theme="light"] .nav-link:hover,
+body[data-theme="light"] .nav-link.active {
+    color: var(--accent-main);
 }
 
 .nav-actions {
@@ -263,28 +346,39 @@ img {
 
 .lang-toggle {
     padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 161, 101, 0.5);
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(242, 242, 242, 0.8);
     transition: all var(--transition-fast);
 }
 
 .lang-toggle:hover {
-    border-color: var(--color-white);
-    color: var(--color-white);
+    border-color: var(--accent-main);
+    color: var(--accent-main);
 }
 
-/* Lang toggle on visible nav (light background) */
+/* Lang toggle on visible nav */
 .nav.nav-visible .lang-toggle {
-    border-color: rgba(2, 0, 53, 0.3);
-    color: rgba(2, 0, 53, 0.6);
+    border-color: rgba(200, 161, 101, 0.5);
+    color: rgba(242, 242, 242, 0.8);
 }
 
 .nav.nav-visible .lang-toggle:hover {
-    border-color: var(--color-navy-dark);
-    color: var(--color-navy-dark);
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
+/* Light theme lang toggle */
+body[data-theme="light"] .lang-toggle {
+    border-color: rgba(216, 178, 119, 0.5);
+    color: rgba(21, 23, 28, 0.6);
+}
+
+body[data-theme="light"] .lang-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
 }
 
 /* Mobile Menu Button */
@@ -302,7 +396,7 @@ img {
     display: block;
     width: 100%;
     height: 2px;
-    background-color: var(--color-navy-dark);
+    background-color: var(--text-primary);
     transition: all var(--transition-fast);
 }
 
@@ -331,7 +425,7 @@ img {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: rgba(2, 0, 53, 0.95);
+    background-color: rgba(14, 17, 22, 0.98);
     backdrop-filter: blur(12px);
     padding: 20px;
 }
@@ -351,13 +445,13 @@ img {
     padding: 14px 0;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--color-gray-dark);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
     transition: color var(--transition-fast);
 }
 
 .mobile-link:hover {
-    color: var(--color-white);
+    color: var(--accent-main);
 }
 
 /* =============================================
@@ -458,7 +552,7 @@ img {
    ============================================= */
 
 .section-hero {
-    background-color: var(--color-navy-dark);
+    background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
     position: relative;
     overflow: hidden;
@@ -514,9 +608,9 @@ img {
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(2, 0, 53, 0.4) 0%,
-        rgba(2, 0, 53, 0.6) 50%,
-        rgba(2, 0, 53, 0.8) 100%
+        rgba(14, 17, 22, 0.4) 0%,
+        rgba(14, 17, 22, 0.6) 50%,
+        rgba(14, 17, 22, 0.8) 100%
     );
 }
 
@@ -668,6 +762,58 @@ img {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+/* =========================================
+   THE OFFSET BUTTON - Architectural Animation
+   ========================================= */
+.btn-offset {
+    position: relative;
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-main);
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+    transition: transform var(--anim-speed) var(--ease-architectural), color 0.2s ease;
+}
+
+/* The "Ghost" layer that slides out */
+.btn-offset::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--accent-main);
+    background: var(--accent-main);
+    z-index: -1;
+    opacity: 0;
+    transition: transform var(--anim-speed) var(--ease-architectural), opacity 0.2s ease;
+}
+
+/* Hover Interaction */
+.btn-offset:hover {
+    transform: translate(-4px, -4px);
+    color: #0E1116;
+}
+
+.btn-offset:hover::after {
+    opacity: 1;
+    transform: translate(8px, 8px);
+}
+
+/* Light theme offset button text color on hover */
+body[data-theme="light"] .btn-offset:hover {
+    color: #15171C;
+}
+
 /* =============================================
    SECTION HEADERS (Image Placeholders)
    ============================================= */
@@ -745,7 +891,7 @@ img {
    ============================================= */
 
 .section-services {
-    background-color: var(--color-gray-light);
+    background-color: var(--bg-surface);
     padding-top: var(--nav-height-mobile);
 }
 
@@ -968,7 +1114,7 @@ img {
    ============================================= */
 
 .section-projects {
-    background-color: var(--color-gray-medium);
+    background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
 }
 
@@ -1025,7 +1171,13 @@ img {
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
-    background-color: rgba(2, 0, 53, 0.08);
+    background-color: var(--bg-surface);
+    box-shadow: var(--shadow-depth);
+    transition: all 0.4s var(--ease-architectural);
+}
+
+.project-card:hover {
+    box-shadow: var(--shadow-hover);
 }
 
 .project-image {
@@ -1056,7 +1208,7 @@ img {
 .project-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(2, 0, 53, 0.9) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(14, 17, 22, 0.95) 0%, transparent 60%);
     opacity: 0.85;
 }
 
@@ -1106,11 +1258,11 @@ img {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: rgba(2, 0, 53, 0.2);
+    background-color: rgba(200, 161, 101, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-white);
+    color: var(--text-primary);
     opacity: 0;
     transition: opacity var(--transition-fast);
 }
@@ -1124,7 +1276,7 @@ img {
    ============================================= */
 
 .section-contact {
-    background-color: var(--color-gray-medium);
+    background-color: var(--bg-surface);
     padding-top: var(--nav-height-mobile);
 }
 
@@ -1160,7 +1312,7 @@ img {
 
 .contact-subtitle {
     font-size: 1rem;
-    color: rgba(2, 0, 53, 0.6);
+    color: var(--text-secondary);
     margin-bottom: 40px;
 }
 
@@ -1200,7 +1352,7 @@ img {
 .contact-name {
     font-size: 1.75rem;
     font-weight: 500;
-    color: var(--color-navy-dark);
+    color: var(--text-primary);
     margin-bottom: 0;
 }
 
@@ -1227,7 +1379,7 @@ img {
     width: 140px;
     height: 140px;
     flex-shrink: 0;
-    background-color: rgba(2, 0, 53, 0.08);
+    background-color: var(--bg-main);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -1253,7 +1405,7 @@ img {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    color: rgba(2, 0, 53, 0.3);
+    color: var(--text-secondary);
 }
 
 .photo-placeholder span {
@@ -1262,7 +1414,7 @@ img {
 
 .contact-bio {
     font-size: 0.9rem;
-    color: rgba(2, 0, 53, 0.7);
+    color: var(--text-secondary);
     line-height: 1.7;
 }
 
@@ -1276,7 +1428,7 @@ img {
 .cv-section h4 {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--color-navy-dark);
+    color: var(--text-primary);
     margin-bottom: 12px;
 }
 
@@ -1288,7 +1440,7 @@ img {
 
 .cv-section li {
     font-size: 0.85rem;
-    color: rgba(2, 0, 53, 0.7);
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
@@ -1308,13 +1460,13 @@ img {
 
 .contact-link {
     font-size: 1rem;
-    color: var(--color-navy-dark);
+    color: var(--text-primary);
     font-weight: 500;
-    transition: opacity var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
 a.contact-link:hover {
-    opacity: 0.7;
+    color: var(--accent-main);
 }
 
 .contact-email {
@@ -1331,7 +1483,7 @@ a.contact-link:hover {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
-    color: rgba(2, 0, 53, 0.7);
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -1359,12 +1511,12 @@ a.contact-link:hover {
 
 .education-item .degree {
     font-weight: 500;
-    color: rgba(2, 0, 53, 0.85);
+    color: var(--text-primary);
 }
 
 .education-item .institution {
     font-size: 0.8rem;
-    color: rgba(2, 0, 53, 0.6);
+    color: var(--text-secondary);
 }
 
 /* About section education styling */
@@ -1381,10 +1533,10 @@ a.contact-link:hover {
     display: block;
     font-style: italic;
     font-size: 0.8rem;
-    color: rgba(2, 0, 53, 0.55);
+    color: var(--text-secondary);
     margin-top: 6px;
     padding-left: 12px;
-    border-left: 2px solid rgba(2, 0, 53, 0.2);
+    border-left: 2px solid var(--accent-main);
 }
 
 /* Map */
@@ -1396,7 +1548,7 @@ a.contact-link:hover {
 
 .map-container {
     aspect-ratio: 4/3;
-    background-color: rgba(2, 0, 53, 0.05);
+    background-color: var(--bg-main);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -1415,7 +1567,7 @@ a.contact-link:hover {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    color: rgba(2, 0, 53, 0.3);
+    color: var(--text-secondary);
 }
 
 .map-placeholder span {
@@ -1428,13 +1580,13 @@ a.contact-link:hover {
 
 .map-location {
     font-weight: 500;
-    color: var(--color-navy-dark);
+    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .map-desc {
     font-size: 0.85rem;
-    color: rgba(2, 0, 53, 0.6);
+    color: var(--text-secondary);
 }
 
 /* =============================================
@@ -1442,7 +1594,7 @@ a.contact-link:hover {
    ============================================= */
 
 .section-about {
-    background-color: var(--color-navy-dark);
+    background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
 }
 
@@ -1637,7 +1789,8 @@ a.contact-link:hover {
     position: relative;
     z-index: 90;
     height: var(--footer-height);
-    background-color: var(--color-navy-dark);
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-container {
@@ -1659,17 +1812,17 @@ a.contact-link:hover {
 
 .footer-link {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     transition: color var(--transition-fast);
 }
 
 .footer-link:hover {
-    color: var(--color-white);
+    color: var(--accent-main);
 }
 
 .footer-copyright {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
 }
 
 /* =============================================
@@ -1696,7 +1849,7 @@ a.contact-link:hover {
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background-color: rgba(1, 0, 26, 0.95);
+    background-color: rgba(14, 17, 22, 0.95);
 }
 
 .modal-container {
@@ -1707,8 +1860,9 @@ a.contact-link:hover {
     margin: 20px;
     overflow-y: auto;
     border-radius: 8px;
-    background-color: var(--color-navy-dark);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-hover);
 }
 
 @media (min-width: 992px) {
@@ -1727,16 +1881,17 @@ a.contact-link:hover {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color var(--transition-fast);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .modal-close:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--accent-main);
+    color: var(--bg-main);
 }
 
 @media (min-width: 992px) {
@@ -1763,7 +1918,7 @@ a.contact-link:hover {
     position: relative;
     aspect-ratio: 16/9;
     overflow: hidden;
-    background-color: var(--color-navy-deeper);
+    background-color: var(--bg-main);
 }
 
 @media (min-width: 992px) {
@@ -1800,11 +1955,11 @@ a.contact-link:hover {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
     text-align: center;
     width: 100%;
     height: 100%;
-    background-color: var(--color-navy-deeper);
+    background-color: var(--bg-main);
 }
 
 .carousel-placeholder span {
@@ -1818,8 +1973,8 @@ a.contact-link:hover {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
+    background-color: rgba(200, 161, 101, 0.2);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1827,7 +1982,8 @@ a.contact-link:hover {
 }
 
 .carousel-nav:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--accent-main);
+    color: var(--bg-main);
 }
 
 .carousel-prev {
@@ -1851,13 +2007,13 @@ a.contact-link:hover {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(200, 161, 101, 0.4);
     transition: background-color var(--transition-fast);
     cursor: pointer;
 }
 
 .carousel-dot.active {
-    background-color: var(--color-white);
+    background-color: var(--accent-main);
 }
 
 /* Modal Info */
@@ -1888,7 +2044,7 @@ a.contact-link:hover {
 .modal-title {
     font-size: 1.75rem;
     font-weight: 400;
-    color: var(--color-white);
+    color: var(--text-primary);
     margin-bottom: 8px;
 }
 
@@ -1900,7 +2056,7 @@ a.contact-link:hover {
 
 .modal-type {
     font-size: 0.9rem;
-    color: var(--color-gray-dark);
+    color: var(--accent-main);
     margin-bottom: 28px;
 }
 
@@ -1927,13 +2083,62 @@ a.contact-link:hover {
 
 .modal-description p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--text-secondary);
     line-height: 1.7;
 }
 
 .modal-close-btn {
     width: 100%;
     justify-content: center;
+}
+
+/* =============================================
+   CARD COMPONENT - Deep Layered Shadows
+   ============================================= */
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-depth);
+    transition: all 0.4s var(--ease-architectural);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-main);
+}
+
+/* =============================================
+   GLOW ELEMENT - Atmospheric Haze
+   ============================================= */
+.glow-element {
+    box-shadow: var(--glow-effect);
+    transition: box-shadow 0.5s ease;
+}
+
+.glow-element:hover {
+    box-shadow: 0 0 60px rgba(200, 161, 101, 0.7);
+}
+
+body[data-theme="light"] .glow-element:hover {
+    box-shadow: 0 0 50px rgba(216, 178, 119, 0.6);
+}
+
+/* =============================================
+   ACCENT COLOR UTILITIES
+   ============================================= */
+.text-accent {
+    color: var(--accent-main);
+}
+
+.bg-accent {
+    background-color: var(--accent-main);
+}
+
+.border-accent {
+    border-color: var(--accent-main);
 }
 
 /* =============================================
@@ -1967,14 +2172,14 @@ a.contact-link:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-navy-dark);
+    background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(200, 161, 101, 0.3);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--accent-main);
 }
