@@ -929,17 +929,12 @@ body[data-theme="light"] .btn-offset:hover {
 .header-svg {
     height: 100%;
     width: auto;
+    transition: filter 0.4s ease;
 }
 
-/* SVG header colors - Dark mode: warm brass tone */
-.header-svg path {
-    fill: #B8956A;
-    transition: fill 0.4s ease;
-}
-
-/* SVG header colors - Light mode: darker brass tone for better contrast */
-body[data-theme="light"] .header-svg path {
-    fill: #9A7B4F;
+/* SVG header colors - Light mode: darken to #9A7B4F equivalent */
+body[data-theme="light"] .header-svg {
+    filter: brightness(0.83) saturate(0.9);
 }
 
 /* =============================================
@@ -1355,7 +1350,7 @@ body[data-theme="light"] .accordion-content p {
    ============================================= */
 
 .section-contact {
-    background-color: var(--bg-surface);
+    background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
 }
 
