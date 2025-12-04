@@ -1136,8 +1136,7 @@ img {
 
 @media (min-width: 992px) {
     .section-contact {
-        min-height: 100vh;
-        max-height: 100vh;
+        min-height: calc(100vh - var(--footer-height));
         display: flex;
         flex-direction: column;
     }
@@ -1149,13 +1148,13 @@ img {
     flex-direction: column;
     justify-content: center;
     padding-top: 40px;
-    padding-bottom: calc(var(--footer-height) + 40px);
+    padding-bottom: 40px;
 }
 
 @media (min-width: 992px) {
     .section-contact > .container {
         padding-top: 40px;
-        padding-bottom: calc(var(--footer-height) + 40px);
+        padding-bottom: 40px;
     }
 }
 
@@ -1351,11 +1350,41 @@ a.contact-link:hover {
     opacity: 0.7;
 }
 
+/* Education Item - Nicely formatted */
+.education-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.education-item .degree {
+    font-weight: 500;
+    color: rgba(2, 0, 53, 0.85);
+}
+
+.education-item .institution {
+    font-size: 0.8rem;
+    color: rgba(2, 0, 53, 0.6);
+}
+
+/* About section education styling */
+.about-cv .education-item .degree {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.about-cv .education-item .institution {
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* Thesis Title */
 .thesis-title {
+    display: block;
     font-style: italic;
     font-size: 0.8rem;
     color: rgba(2, 0, 53, 0.55);
+    margin-top: 6px;
+    padding-left: 12px;
+    border-left: 2px solid rgba(2, 0, 53, 0.2);
 }
 
 /* Map */
@@ -1597,6 +1626,7 @@ a.contact-link:hover {
 
 .about-cv .thesis-title {
     color: rgba(255, 255, 255, 0.55);
+    border-left-color: rgba(255, 255, 255, 0.3);
 }
 
 /* =============================================
@@ -1681,6 +1711,14 @@ a.contact-link:hover {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+@media (min-width: 992px) {
+    .modal-container {
+        max-width: 1200px;
+        max-height: 80vh;
+        overflow: hidden;
+    }
+}
+
 .modal-close {
     position: absolute;
     top: 16px;
@@ -1701,9 +1739,23 @@ a.contact-link:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+@media (min-width: 992px) {
+    .modal-close {
+        top: 20px;
+        right: 20px;
+    }
+}
+
 .modal-content {
     display: flex;
     flex-direction: column;
+}
+
+@media (min-width: 992px) {
+    .modal-content {
+        flex-direction: row;
+        height: 100%;
+    }
 }
 
 /* Modal Carousel */
@@ -1712,6 +1764,15 @@ a.contact-link:hover {
     aspect-ratio: 16/9;
     overflow: hidden;
     background-color: var(--color-navy-deeper);
+}
+
+@media (min-width: 992px) {
+    .modal-carousel {
+        order: 2;
+        flex: 1;
+        aspect-ratio: unset;
+        min-height: 400px;
+    }
 }
 
 .carousel-slides {
@@ -1810,6 +1871,20 @@ a.contact-link:hover {
     }
 }
 
+@media (min-width: 992px) {
+    .modal-info {
+        order: 1;
+        width: 45%;
+        min-width: 400px;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px;
+        overflow-y: auto;
+    }
+}
+
 .modal-title {
     font-size: 1.75rem;
     font-weight: 400;
@@ -1836,10 +1911,17 @@ a.contact-link:hover {
     margin-bottom: 32px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 576px) and (max-width: 991px) {
     .modal-description {
         grid-template-columns: 1fr 1fr;
         gap: 32px;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-description {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 
