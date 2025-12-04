@@ -211,7 +211,7 @@ function rot13(str) {
 function setupEmailObfuscation() {
     const emailSpan = document.getElementById('email');
     if (emailSpan) {
-        // ROT13-encoded version of "info@publiclighting.de"
+        // ROT13-encoded version of email
         const encoded = "vasb@choyvpyvtugvat.qr";
         const decoded = rot13(encoded);
         emailSpan.textContent = decoded;
