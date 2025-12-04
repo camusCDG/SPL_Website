@@ -109,6 +109,7 @@ const projectData = {
 
 // Current state
 let currentLang = 'en';
+let currentTheme = 'dark';
 let currentSlide = 0;
 let currentCarouselSlide = 0;
 let slideInterval = null;
@@ -116,6 +117,7 @@ let slideInterval = null;
 // DOM Elements
 const mainContainer = document.getElementById('mainContainer');
 const langToggle = document.getElementById('langToggle');
+const themeToggle = document.getElementById('themeToggle');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
@@ -131,6 +133,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     setupLanguageToggle();
+    setupThemeToggle();
     setupMobileMenu();
     setupNavigation();
     setupSectionObserver();
@@ -138,12 +141,20 @@ function init() {
     setupSlideshow();
     setupProjectModal();
     setupScrollBehavior();
-    
+    setupEmailObfuscation();
+
     // Check for saved language preference
     const savedLang = localStorage.getItem('sfpl-lang');
     if (savedLang) {
         currentLang = savedLang;
         updateLanguage();
+    }
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('sfpl-theme');
+    if (savedTheme) {
+        currentTheme = savedTheme;
+        updateTheme();
     }
 }
 
@@ -158,7 +169,7 @@ function setupLanguageToggle() {
 
 function updateLanguage() {
     langToggle.textContent = currentLang === 'en' ? 'DE' : 'EN';
-    
+
     // Update all translatable elements
     document.querySelectorAll('[data-en]').forEach(el => {
         const text = el.getAttribute(`data-${currentLang}`);
@@ -166,9 +177,47 @@ function updateLanguage() {
             el.textContent = text;
         }
     });
-    
+
     // Update HTML lang attribute
     document.documentElement.lang = currentLang;
+}
+
+// Theme Toggle
+function setupThemeToggle() {
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('sfpl-theme', currentTheme);
+            updateTheme();
+        });
+    }
+}
+
+function updateTheme() {
+    document.body.setAttribute('data-theme', currentTheme);
+}
+
+// ROT13 Email Obfuscation
+function rot13(str) {
+    return str.replace(/[a-zA-Z]/g, function(c) {
+        return String.fromCharCode(
+            c <= "Z"
+                ? ((c.charCodeAt(0) - 65 + 13) % 26) + 65
+                : ((c.charCodeAt(0) - 97 + 13) % 26) + 97
+        );
+    });
+}
+
+function setupEmailObfuscation() {
+    const emailSpan = document.getElementById('email');
+    if (emailSpan) {
+        // ROT13-encoded version of "info@publiclighting.de"
+        const encoded = "vasb@choyvpyvtugvat.qr";
+        const decoded = rot13(encoded);
+        emailSpan.textContent = decoded;
+        emailSpan.style.cursor = "pointer";
+        emailSpan.onclick = () => window.location.href = "mailto:" + decoded;
+    }
 }
 
 // Mobile Menu
