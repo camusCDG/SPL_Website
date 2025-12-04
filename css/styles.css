@@ -150,9 +150,7 @@ img {
     left: 0;
     right: 0;
     z-index: 100;
-    background-color: rgba(2, 0, 53, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: transparent;
 }
 
 .nav-container {
@@ -1267,6 +1265,28 @@ a.contact-link:hover {
     color: rgba(2, 0, 53, 0.7);
 }
 
+/* LinkedIn Icon */
+.contact-linkedin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-linkedin svg {
+    transition: opacity var(--transition-fast);
+}
+
+.contact-linkedin:hover svg {
+    opacity: 0.7;
+}
+
+/* Thesis Title */
+.thesis-title {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: rgba(2, 0, 53, 0.55);
+}
+
 /* Map */
 .contact-map {
     display: flex;
@@ -1328,14 +1348,14 @@ a.contact-link:hover {
     right: 0;
     z-index: 90;
     height: var(--footer-height);
-    background-color: var(--color-navy-dark);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
 }
 
 .footer-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 24px;
     height: 100%;
     max-width: 1600px;
     margin: 0 auto;
@@ -1350,7 +1370,7 @@ a.contact-link:hover {
 
 .footer-link {
     font-size: 0.85rem;
-    color: var(--color-gray-dark);
+    color: rgba(255, 255, 255, 0.6);
     transition: color var(--transition-fast);
 }
 
@@ -1360,7 +1380,20 @@ a.contact-link:hover {
 
 .footer-copyright {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Footer adaptive colors for light backgrounds */
+.sticky-footer.footer-light .footer-link {
+    color: rgba(2, 0, 53, 0.5);
+}
+
+.sticky-footer.footer-light .footer-link:hover {
+    color: var(--color-navy-dark);
+}
+
+.sticky-footer.footer-light .footer-copyright {
+    color: rgba(2, 0, 53, 0.5);
 }
 
 /* =============================================

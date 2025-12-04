@@ -240,17 +240,29 @@ function updateActiveSection(sectionId) {
         const linkSection = link.dataset.section;
         link.classList.toggle('active', linkSection === sectionId);
     });
-    
+
     // Update section dots
     sectionDots.forEach(dot => {
         dot.classList.toggle('active', dot.dataset.section === sectionId);
     });
-    
+
     // Hide/show nav logo on hero section
     if (sectionId === 'hero') {
         navLogo.classList.add('hidden');
     } else {
         navLogo.classList.remove('hidden');
+    }
+
+    // Update footer color based on section background
+    const footer = document.getElementById('stickyFooter');
+    if (footer) {
+        // Light backgrounds: services, contact
+        const lightSections = ['services', 'contact'];
+        if (lightSections.includes(sectionId)) {
+            footer.classList.add('footer-light');
+        } else {
+            footer.classList.remove('footer-light');
+        }
     }
 }
 
