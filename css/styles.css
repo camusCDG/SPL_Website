@@ -373,7 +373,7 @@ body[data-theme="light"] .nav-link.active {
 /* Light theme lang toggle */
 body[data-theme="light"] .lang-toggle {
     border-color: rgba(216, 178, 119, 0.5);
-    color: rgba(21, 23, 28, 0.6);
+    color: rgba(21, 23, 28, 0.8);
 }
 
 body[data-theme="light"] .lang-toggle:hover {
@@ -386,8 +386,7 @@ body[data-theme="light"] .lang-toggle:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    padding: 8px;
     border: 1px solid rgba(200, 161, 101, 0.5);
     border-radius: 4px;
     color: rgba(242, 242, 242, 0.8);
@@ -431,6 +430,27 @@ body[data-theme="light"] .theme-toggle {
 }
 
 body[data-theme="light"] .theme-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
+/* Light theme on hero section (dark background) - keep icons light */
+body[data-theme="light"] .nav:not(.nav-visible) .theme-toggle {
+    border-color: rgba(200, 161, 101, 0.5);
+    color: rgba(242, 242, 242, 0.8);
+}
+
+body[data-theme="light"] .nav:not(.nav-visible) .theme-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
+body[data-theme="light"] .nav:not(.nav-visible) .lang-toggle {
+    border-color: rgba(200, 161, 101, 0.5);
+    color: rgba(242, 242, 242, 0.8);
+}
+
+body[data-theme="light"] .nav:not(.nav-visible) .lang-toggle:hover {
     border-color: var(--accent-main);
     color: var(--accent-main);
 }
@@ -1548,6 +1568,11 @@ a.contact-link:hover {
 
 .contact-email {
     font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.contact-email:hover {
+    color: var(--accent-main);
 }
 
 @media (min-width: 768px) {
@@ -1856,6 +1881,53 @@ a.contact-link:hover {
 .about-cv .thesis-title {
     color: rgba(255, 255, 255, 0.55);
     border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+/* About Me section - Light theme */
+body[data-theme="light"] .section-about .header-placeholder {
+    background-color: rgba(21, 23, 28, 0.08);
+    color: rgba(21, 23, 28, 0.5);
+}
+
+body[data-theme="light"] .about-name {
+    color: var(--text-primary);
+}
+
+body[data-theme="light"] .about-photo {
+    background-color: rgba(21, 23, 28, 0.08);
+}
+
+body[data-theme="light"] .about-photo .photo-placeholder {
+    color: rgba(21, 23, 28, 0.3);
+}
+
+body[data-theme="light"] .quote-text {
+    background-color: rgba(21, 23, 28, 0.05);
+    border-left-color: rgba(21, 23, 28, 0.3);
+    color: rgba(21, 23, 28, 0.8);
+}
+
+body[data-theme="light"] .quote-placeholder {
+    background-color: rgba(21, 23, 28, 0.05);
+    border-color: rgba(21, 23, 28, 0.2);
+    color: rgba(21, 23, 28, 0.3);
+}
+
+body[data-theme="light"] .about-bio {
+    color: rgba(21, 23, 28, 0.7);
+}
+
+body[data-theme="light"] .about-cv .cv-section h4 {
+    color: var(--text-primary);
+}
+
+body[data-theme="light"] .about-cv .cv-section li {
+    color: rgba(21, 23, 28, 0.7);
+}
+
+body[data-theme="light"] .about-cv .thesis-title {
+    color: rgba(21, 23, 28, 0.55);
+    border-left-color: rgba(21, 23, 28, 0.3);
 }
 
 /* =============================================
