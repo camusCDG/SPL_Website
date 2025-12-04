@@ -260,47 +260,88 @@ function updateActiveSection(sectionId) {
 
 // Scroll behavior - different for mobile/tablet vs desktop
 function setupScrollBehavior() {
+    const nav = document.getElementById('nav');
+
     // Initial check
     updateActiveSection('hero');
     navLogo.classList.add('hidden');
-    
-    // Check on scroll
+
+    // Track scroll position for direction detection
+    let lastScrollTop = 0;
     let ticking = false;
-    
+
+    // Check if mobile/tablet (under 992px)
+    const isMobileOrTablet = () => window.innerWidth < 992;
+
     const handleScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                // Get the current scroll position
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // Check if at top (hero section)
+
+                // Check if at top (hero section) - hide everything
                 if (scrollTop < 100) {
                     navLogo.classList.add('hidden');
+                    nav.classList.remove('nav-visible');
                 } else {
                     navLogo.classList.remove('hidden');
+
+                    if (isMobileOrTablet()) {
+                        // Mobile/Tablet: show nav only on scroll up
+                        if (scrollTop < lastScrollTop) {
+                            // Scrolling up
+                            nav.classList.add('nav-visible');
+                        } else {
+                            // Scrolling down
+                            nav.classList.remove('nav-visible');
+                        }
+                    } else {
+                        // Desktop: show nav on any scroll
+                        nav.classList.add('nav-visible');
+                    }
                 }
-                
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
                 ticking = false;
             });
             ticking = true;
         }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
+    // Handle resize to recheck mobile/desktop state
+    window.addEventListener('resize', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop >= 100 && !isMobileOrTablet()) {
+            nav.classList.add('nav-visible');
+        }
+    });
+
     // Also check mainContainer for desktop scroll snap
     if (mainContainer) {
         mainContainer.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     const scrollTop = mainContainer.scrollTop;
-                    
+
                     if (scrollTop < 100) {
                         navLogo.classList.add('hidden');
+                        nav.classList.remove('nav-visible');
                     } else {
                         navLogo.classList.remove('hidden');
+
+                        if (isMobileOrTablet()) {
+                            if (scrollTop < lastScrollTop) {
+                                nav.classList.add('nav-visible');
+                            } else {
+                                nav.classList.remove('nav-visible');
+                            }
+                        } else {
+                            nav.classList.add('nav-visible');
+                        }
                     }
-                    
+
+                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
                     ticking = false;
                 });
                 ticking = true;
