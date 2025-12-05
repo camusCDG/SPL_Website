@@ -58,7 +58,7 @@
    ========================================= */
 :root {
     /* FONTS */
-    --font-display: 'Inter Tight', sans-serif;
+    --font-display: 'Poppins', sans-serif;
     --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-primary: var(--font-body);
 
