@@ -554,34 +554,68 @@ function setupProjectModal() {
             <p>${project.description2}</p>
         `;
         
+        // Project-specific image configurations
+        const projectImages = {
+            0: { // Schramberg
+                images: [
+                    { large: 'images/projects/schramberg_1_large.webp', small: 'images/projects/schramberg_1_small.webp', alt: 'Schramberg Burgenbeleuchtung 1' },
+                    { large: 'images/projects/schramberg_2_large.webp', small: 'images/projects/schramberg_2_small.webp', alt: 'Schramberg Burgenbeleuchtung 2' }
+                ]
+            }
+        };
+
         // Generate carousel slides
         carouselSlides.innerHTML = '';
         carouselDots.innerHTML = '';
-        
-        for (let i = 0; i < 5; i++) {
-            // Slide
-            const slide = document.createElement('div');
-            slide.className = 'carousel-slide';
-            slide.innerHTML = `
-                <div class="carousel-placeholder">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    <span>Project Image ${i + 1}</span>
-                    <span class="placeholder-size">1200 x 800px</span>
-                </div>
-            `;
-            carouselSlides.appendChild(slide);
-            
-            // Dot
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', `Image ${i + 1}`);
-            dot.addEventListener('click', () => {
-                currentCarouselSlide = i;
-                updateCarousel();
+
+        const projectImageConfig = projectImages[index];
+        const isMobile = window.innerWidth <= 768;
+
+        if (projectImageConfig) {
+            // Project has actual images
+            projectImageConfig.images.forEach((img, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const imageSrc = isMobile ? img.small : img.large;
+                slide.innerHTML = `<img src="${imageSrc}" alt="${img.alt}" loading="lazy" data-large="${img.large}" data-small="${img.small}">`;
+                carouselSlides.appendChild(slide);
+
+                // Dot
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Image ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    currentCarouselSlide = i;
+                    updateCarousel();
+                });
+                carouselDots.appendChild(dot);
             });
-            carouselDots.appendChild(dot);
+        } else {
+            // Fallback to placeholder for other projects
+            for (let i = 0; i < 5; i++) {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div class="carousel-placeholder">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Project Image ${i + 1}</span>
+                        <span class="placeholder-size">1200 x 800px</span>
+                    </div>
+                `;
+                carouselSlides.appendChild(slide);
+
+                // Dot
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Image ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    currentCarouselSlide = i;
+                    updateCarousel();
+                });
+                carouselDots.appendChild(dot);
+            }
         }
         
         currentCarouselSlide = 0;
