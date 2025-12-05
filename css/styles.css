@@ -406,6 +406,17 @@ body[data-theme="light"] .lang-toggle:hover {
     color: var(--accent-main);
 }
 
+/* Light theme lang toggle when scrolled (nav visible) */
+body[data-theme="light"] .nav.nav-visible .lang-toggle {
+    border-color: rgba(21, 23, 28, 0.3);
+    color: rgba(21, 23, 28, 0.7);
+}
+
+body[data-theme="light"] .nav.nav-visible .lang-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     display: flex;
@@ -466,6 +477,17 @@ body[data-theme="light"] .theme-toggle {
 }
 
 body[data-theme="light"] .theme-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
+/* Light theme theme toggle when scrolled (nav visible) */
+body[data-theme="light"] .nav.nav-visible .theme-toggle {
+    border-color: rgba(21, 23, 28, 0.3);
+    color: rgba(21, 23, 28, 0.7);
+}
+
+body[data-theme="light"] .nav.nav-visible .theme-toggle:hover {
     border-color: var(--accent-main);
     color: var(--accent-main);
 }
