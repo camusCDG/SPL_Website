@@ -596,10 +596,10 @@ body[data-theme="light"] .moon-icon {
         z-index: 90;
         flex-direction: column;
         gap: 12px;
-        /* Container styling matching site aesthetic */
-        background: var(--bg-main);
-        padding: 12px 10px;
-        border: 1px solid var(--accent-main);
+        /* Container styling - always dark mode hero background */
+        background: #0E1116;
+        padding: 8px 6px;
+        border-radius: 8px;
     }
 }
 
@@ -2098,43 +2098,19 @@ body[data-theme="light"] .about-cv .thesis-title {
     z-index: 10;
     width: 48px;
     height: 48px;
-    background: var(--bg-surface);
+    background: transparent;
     color: var(--text-primary);
-    border: 1px solid var(--accent-main);
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform var(--anim-speed) var(--ease-architectural), color 0.2s ease;
-}
-
-/* The "Ghost" layer that slides out */
-.modal-close::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--accent-main);
-    background: var(--accent-main);
-    z-index: -1;
-    opacity: 0;
-    transition: transform var(--anim-speed) var(--ease-architectural), opacity 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .modal-close:hover {
-    transform: translate(-4px, -4px);
-    color: #0E1116;
-}
-
-.modal-close:hover::after {
-    opacity: 1;
-    transform: translate(8px, 8px);
-}
-
-body[data-theme="light"] .modal-close:hover {
-    color: #15171C;
+    color: var(--accent-main);
+    transform: scale(1.1);
 }
 
 @media (min-width: 992px) {
@@ -2332,7 +2308,7 @@ body[data-theme="light"] .modal-close:hover {
 
 .modal-close-btn {
     width: 100%;
-    justify-content: center;
+    text-align: center;
 }
 
 /* =============================================
