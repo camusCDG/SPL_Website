@@ -302,23 +302,24 @@ body[data-theme="light"] .nav.nav-visible {
     }
 }
 
-/* Nav logo SVG color styling - Dark mode: gray, Light mode: black */
-.logo-svg path {
-    fill: #7f7f7f;
-    transition: fill 0.3s ease;
+/* Nav logo SVG color styling - using CSS filters since SVG is loaded as <img> */
+/* Dark mode (default): gray #7f7f7f */
+.logo-svg {
+    filter: brightness(0) saturate(100%) invert(53%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(90%);
+    transition: filter 0.3s ease;
 }
 
-.nav-logo:hover .logo-svg path {
-    fill: var(--accent-main);
+.nav-logo:hover .logo-svg {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(15%) saturate(1000%) hue-rotate(5deg) brightness(90%) contrast(85%);
 }
 
-/* Light theme nav logo */
-body[data-theme="light"] .logo-svg path {
-    fill: #000000;
+/* Light theme nav logo: black #000000 */
+body[data-theme="light"] .logo-svg {
+    filter: brightness(0) saturate(100%);
 }
 
-body[data-theme="light"] .nav-logo:hover .logo-svg path {
-    fill: var(--accent-main);
+body[data-theme="light"] .nav-logo:hover .logo-svg {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(15%) saturate(1000%) hue-rotate(5deg) brightness(90%) contrast(85%);
 }
 
 .nav-right {
