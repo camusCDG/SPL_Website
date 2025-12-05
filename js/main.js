@@ -123,6 +123,7 @@ const mobileMenu = document.getElementById('mobileMenu');
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
 const navLogo = document.getElementById('navLogo');
 const sectionDots = document.querySelectorAll('.section-dot');
+const sectionIndicators = document.getElementById('sectionIndicators');
 const accordionHeaders = document.querySelectorAll('.accordion-header');
 const projectCards = document.querySelectorAll('.project-card');
 const projectModal = document.getElementById('projectModal');
@@ -306,8 +307,10 @@ function updateActiveSection(sectionId) {
     // Hide/show nav logo on hero section
     if (sectionId === 'hero') {
         navLogo.classList.add('hidden');
+        sectionIndicators.classList.add('in-hero');
     } else {
         navLogo.classList.remove('hidden');
+        sectionIndicators.classList.remove('in-hero');
     }
 
     // Update footer color based on section background

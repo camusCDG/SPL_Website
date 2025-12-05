@@ -625,7 +625,11 @@ body[data-theme="light"] .moon-icon {
     background-color: var(--color-white);
 }
 
-/* Light mode section indicators - ensure visibility */
+/* Light mode section indicators - when NOT in hero section */
+body[data-theme="light"] .section-indicators {
+    background: #F2F1ED;
+}
+
 body[data-theme="light"] .section-dot {
     background-color: rgba(21, 23, 28, 0.25);
 }
@@ -636,6 +640,23 @@ body[data-theme="light"] .section-dot:hover {
 
 body[data-theme="light"] .section-dot.active {
     background-color: var(--text-primary);
+}
+
+/* Light mode section indicators - when IN hero section (use dark mode styling) */
+body[data-theme="light"] .section-indicators.in-hero {
+    background: #0E1116;
+}
+
+body[data-theme="light"] .section-indicators.in-hero .section-dot {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="light"] .section-indicators.in-hero .section-dot:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="light"] .section-indicators.in-hero .section-dot.active {
+    background-color: var(--color-white);
 }
 
 /* =============================================
