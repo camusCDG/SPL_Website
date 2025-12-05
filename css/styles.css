@@ -103,6 +103,10 @@ body, body[data-theme="dark"] {
 
     /* Atmospheric Haze Glow */
     --glow-effect: 0 0 40px rgba(200, 161, 101, 0.5);
+
+    /* Subtle ambient light gradient for dark backgrounds */
+    --ambient-light-gradient: radial-gradient(ellipse 120% 80% at 15% 10%, rgba(255, 255, 255, 0.025) 0%, transparent 50%),
+                              radial-gradient(ellipse 80% 60% at 85% 90%, rgba(200, 161, 101, 0.015) 0%, transparent 40%);
 }
 
 /* =========================================
@@ -309,7 +313,7 @@ body[data-theme="light"] .nav.nav-visible {
 
 /* Light theme nav logo - only when nav is visible (scrolled) */
 body[data-theme="light"] .nav.nav-visible .logo-svg path {
-    fill: rgba(21, 23, 28, 0.85);
+    fill: #000000;
 }
 
 body[data-theme="light"] .nav.nav-visible .nav-logo:hover .logo-svg path {
@@ -932,9 +936,14 @@ body[data-theme="light"] .btn-offset:hover {
     transition: filter 0.4s ease;
 }
 
-/* SVG header colors - Light mode: darken to #9A7B4F equivalent */
+/* SVG header colors - Light mode: set to dark color #0E1116 */
 body[data-theme="light"] .header-svg {
-    filter: brightness(0.83) saturate(0.9);
+    filter: brightness(0) saturate(100%) invert(5%) sepia(10%) saturate(1000%) hue-rotate(180deg) brightness(95%) contrast(95%);
+}
+
+/* Alternative: directly style SVG paths for light mode */
+body[data-theme="light"] .header-svg path {
+    fill: #0E1116;
 }
 
 /* =============================================
@@ -1078,6 +1087,7 @@ body[data-theme="light"] .accordion-content p {
     overflow: hidden;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
     aspect-ratio: 3/4;
+    max-height: 100vh;
 }
 
 /* Tablet portrait mode - limit slideshow height to viewport */
@@ -1092,6 +1102,7 @@ body[data-theme="light"] .accordion-content p {
 @media (min-width: 992px) {
     .services-slideshow {
         aspect-ratio: 4/5;
+        max-height: 100vh;
     }
 }
 
@@ -1190,6 +1201,13 @@ body[data-theme="light"] .accordion-content p {
 .section-projects {
     background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
+}
+
+/* Dark mode ambient light effect for projects section */
+body[data-theme="dark"] .section-projects,
+body:not([data-theme]) .section-projects {
+    background: var(--bg-main);
+    background-image: var(--ambient-light-gradient);
 }
 
 @media (min-width: 768px) {
@@ -1352,6 +1370,13 @@ body[data-theme="light"] .accordion-content p {
 .section-contact {
     background-color: var(--bg-main);
     padding-top: var(--nav-height-mobile);
+}
+
+/* Dark mode ambient light effect for contact section */
+body[data-theme="dark"] .section-contact,
+body:not([data-theme]) .section-contact {
+    background: var(--bg-main);
+    background-image: var(--ambient-light-gradient);
 }
 
 @media (min-width: 768px) {
