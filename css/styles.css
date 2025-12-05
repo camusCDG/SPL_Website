@@ -283,6 +283,7 @@ body[data-theme="light"] .nav.nav-visible {
 .nav-logo {
     z-index: 101;
     transition: opacity var(--transition-medium);
+    margin-right: 40px;
 }
 
 .nav-logo.hidden {
@@ -301,9 +302,9 @@ body[data-theme="light"] .nav.nav-visible {
     }
 }
 
-/* Nav logo SVG color styling */
+/* Nav logo SVG color styling - Dark mode: gray, Light mode: black */
 .logo-svg path {
-    fill: rgba(242, 242, 242, 0.9);
+    fill: #7f7f7f;
     transition: fill 0.3s ease;
 }
 
@@ -311,12 +312,12 @@ body[data-theme="light"] .nav.nav-visible {
     fill: var(--accent-main);
 }
 
-/* Light theme nav logo - only when nav is visible (scrolled) */
-body[data-theme="light"] .nav.nav-visible .logo-svg path {
+/* Light theme nav logo */
+body[data-theme="light"] .logo-svg path {
     fill: #000000;
 }
 
-body[data-theme="light"] .nav.nav-visible .nav-logo:hover .logo-svg path {
+body[data-theme="light"] .nav-logo:hover .logo-svg path {
     fill: var(--accent-main);
 }
 
@@ -417,6 +418,17 @@ body[data-theme="light"] .lang-toggle:hover {
 }
 
 .theme-toggle:hover {
+    border-color: var(--accent-main);
+    color: var(--accent-main);
+}
+
+/* Theme toggle on visible nav - match lang toggle */
+.nav.nav-visible .theme-toggle {
+    border-color: rgba(200, 161, 101, 0.5);
+    color: rgba(242, 242, 242, 0.8);
+}
+
+.nav.nav-visible .theme-toggle:hover {
     border-color: var(--accent-main);
     color: var(--accent-main);
 }
