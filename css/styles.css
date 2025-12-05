@@ -369,80 +369,99 @@ body[data-theme="light"] .nav-link.active {
     gap: 16px;
 }
 
+/* Language Toggle - btn-offset style */
 .lang-toggle {
+    position: relative;
     padding: 8px 14px;
-    border: 1px solid rgba(200, 161, 101, 0.5);
-    border-radius: 4px;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-main);
+    border-radius: 0;
     font-size: 0.8rem;
-    font-weight: 500;
-    color: rgba(242, 242, 242, 0.8);
-    transition: all var(--transition-fast);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform var(--anim-speed) var(--ease-architectural), color 0.2s ease;
 }
 
+/* The "Ghost" layer that slides out */
+.lang-toggle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--accent-main);
+    background: var(--accent-main);
+    z-index: -1;
+    opacity: 0;
+    transition: transform var(--anim-speed) var(--ease-architectural), opacity 0.2s ease;
+}
+
+/* Hover Interaction */
 .lang-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
+    transform: translate(-3px, -3px);
+    color: #0E1116;
 }
 
-/* Lang toggle on visible nav */
-.nav.nav-visible .lang-toggle {
-    border-color: rgba(200, 161, 101, 0.5);
-    color: rgba(242, 242, 242, 0.8);
+.lang-toggle:hover::after {
+    opacity: 1;
+    transform: translate(6px, 6px);
 }
 
-.nav.nav-visible .lang-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
-}
-
-/* Light theme lang toggle */
-body[data-theme="light"] .lang-toggle {
-    border-color: rgba(21, 23, 28, 0.3);
-    color: rgba(21, 23, 28, 0.7);
-}
-
+/* Light theme lang toggle text color on hover */
 body[data-theme="light"] .lang-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
+    color: #15171C;
 }
 
-/* Light theme lang toggle when scrolled (nav visible) */
-body[data-theme="light"] .nav.nav-visible .lang-toggle {
-    border-color: rgba(21, 23, 28, 0.3);
-    color: rgba(21, 23, 28, 0.7);
-}
-
-body[data-theme="light"] .nav.nav-visible .lang-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
-}
-
-/* Theme Toggle Button */
+/* Theme Toggle Button - btn-offset style */
 .theme-toggle {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px;
-    border: 1px solid rgba(200, 161, 101, 0.5);
-    border-radius: 4px;
-    color: rgba(242, 242, 242, 0.8);
-    transition: all var(--transition-fast);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-main);
+    border-radius: 0;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform var(--anim-speed) var(--ease-architectural), color 0.2s ease;
 }
 
+/* The "Ghost" layer that slides out */
+.theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--accent-main);
+    background: var(--accent-main);
+    z-index: -1;
+    opacity: 0;
+    transition: transform var(--anim-speed) var(--ease-architectural), opacity 0.2s ease;
+}
+
+/* Hover Interaction */
 .theme-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
+    transform: translate(-3px, -3px);
+    color: #0E1116;
 }
 
-/* Theme toggle on visible nav - match lang toggle */
-.nav.nav-visible .theme-toggle {
-    border-color: rgba(200, 161, 101, 0.5);
-    color: rgba(242, 242, 242, 0.8);
+.theme-toggle:hover::after {
+    opacity: 1;
+    transform: translate(6px, 6px);
 }
 
-.nav.nav-visible .theme-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
+/* Light theme theme toggle text color on hover */
+body[data-theme="light"] .theme-toggle:hover {
+    color: #15171C;
 }
 
 /* Sun icon visible in dark mode, moon in light mode */
@@ -468,49 +487,6 @@ body[data-theme="light"] .sun-icon {
 
 body[data-theme="light"] .moon-icon {
     display: block;
-}
-
-/* Light theme theme toggle */
-body[data-theme="light"] .theme-toggle {
-    border-color: rgba(21, 23, 28, 0.3);
-    color: rgba(21, 23, 28, 0.7);
-}
-
-body[data-theme="light"] .theme-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
-}
-
-/* Light theme theme toggle when scrolled (nav visible) */
-body[data-theme="light"] .nav.nav-visible .theme-toggle {
-    border-color: rgba(21, 23, 28, 0.3);
-    color: rgba(21, 23, 28, 0.7);
-}
-
-body[data-theme="light"] .nav.nav-visible .theme-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
-}
-
-/* Light theme on hero section (dark background) - keep icons light */
-body[data-theme="light"] .nav:not(.nav-visible) .theme-toggle {
-    border-color: rgba(200, 161, 101, 0.5);
-    color: rgba(242, 242, 242, 0.8);
-}
-
-body[data-theme="light"] .nav:not(.nav-visible) .theme-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
-}
-
-body[data-theme="light"] .nav:not(.nav-visible) .lang-toggle {
-    border-color: rgba(200, 161, 101, 0.5);
-    color: rgba(242, 242, 242, 0.8);
-}
-
-body[data-theme="light"] .nav:not(.nav-visible) .lang-toggle:hover {
-    border-color: var(--accent-main);
-    color: var(--accent-main);
 }
 
 /* Mobile Menu Button */
