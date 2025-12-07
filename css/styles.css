@@ -1494,14 +1494,16 @@ body:not([data-theme]) .section-contact {
     margin-bottom: 40px;
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+/* Main two-column grid for Contact section - right column (map) aligns to header top */
+.contact-main-grid {
+    display: flex;
+    flex-direction: column;
     gap: 40px;
 }
 
 @media (min-width: 992px) {
-    .contact-grid {
+    .contact-main-grid {
+        display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 60px;
         align-items: start;
@@ -1509,15 +1511,24 @@ body:not([data-theme]) .section-contact {
 }
 
 @media (min-width: 1600px) {
-    .contact-grid {
+    .contact-main-grid {
         gap: 80px;
     }
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .contact-profile {
@@ -1954,14 +1965,16 @@ body[data-theme="light"] .map-toggle-container {
     }
 }
 
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+/* Main two-column grid for About section - right column aligns to header top */
+.about-main-grid {
+    display: flex;
+    flex-direction: column;
     gap: 40px;
 }
 
 @media (min-width: 992px) {
-    .about-grid {
+    .about-main-grid {
+        display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 60px;
         align-items: start;
@@ -1969,9 +1982,19 @@ body[data-theme="light"] .map-toggle-container {
 }
 
 @media (min-width: 1600px) {
-    .about-grid {
+    .about-main-grid {
         gap: 80px;
     }
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-right {
+    display: flex;
+    flex-direction: column;
 }
 
 .about-profile {
