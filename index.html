@@ -540,14 +540,17 @@
 
                     <div class="contact-map">
                         <div class="map-container">
-                            <div class="map-placeholder">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                                <span data-en="Map Image Placeholder" data-de="Karten-Platzhalter">Map Image Placeholder</span>
-                                <span class="placeholder-size">800 x 600px</span>
-                            </div>
+                            <img src="images/maps/map_light.png" alt="Map of Bodenheim, Germany" class="map-image map-light">
+                            <img src="images/maps/map_dark.png" alt="Map of Bodenheim, Germany" class="map-image map-dark">
+                            <img src="images/maps/map_light_pollution.png" alt="Light pollution map of Bodenheim, Germany" class="map-image map-light-pollution">
+                        </div>
+                        <div class="map-toggle-container">
+                            <button class="map-toggle" id="lightPollutionToggle" aria-pressed="false">
+                                <span class="toggle-label" data-en="Show Light Pollution" data-de="Lichtverschmutzung anzeigen">Show Light Pollution</span>
+                                <span class="toggle-switch">
+                                    <span class="toggle-knob"></span>
+                                </span>
+                            </button>
                         </div>
                         <div class="map-info">
                             <p class="map-location" data-en="Bodenheim, Germany" data-de="Bodenheim, Deutschland">Bodenheim, Germany</p>

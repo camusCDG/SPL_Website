@@ -1739,6 +1739,7 @@ body[data-theme="light"] .about-cv .education-item .institution {
 }
 
 .map-container {
+    position: relative;
     aspect-ratio: 4/3;
     background-color: var(--bg-main);
     border-radius: 8px;
@@ -1749,6 +1750,127 @@ body[data-theme="light"] .about-cv .education-item .institution {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Map Images - Theme-based visibility */
+.map-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Light mode: show map_light */
+body[data-theme="light"] .map-image.map-light {
+    opacity: 1;
+}
+
+/* Dark mode (default): show map_dark */
+body .map-image.map-dark,
+body[data-theme="dark"] .map-image.map-dark {
+    opacity: 1;
+}
+
+/* Hide dark map in light mode */
+body[data-theme="light"] .map-image.map-dark {
+    opacity: 0;
+}
+
+/* Light pollution map - hidden by default, shown when toggle active */
+.map-image.map-light-pollution {
+    opacity: 0;
+    z-index: 2;
+}
+
+/* When light pollution is active in dark mode */
+body.light-pollution-active .map-image.map-dark,
+body[data-theme="dark"].light-pollution-active .map-image.map-dark {
+    opacity: 0;
+}
+
+body.light-pollution-active .map-image.map-light-pollution,
+body[data-theme="dark"].light-pollution-active .map-image.map-light-pollution {
+    opacity: 1;
+}
+
+/* Map Toggle Container */
+.map-toggle-container {
+    display: none;
+    margin-top: 12px;
+}
+
+/* Only show toggle in dark mode */
+body .map-toggle-container,
+body[data-theme="dark"] .map-toggle-container {
+    display: block;
+}
+
+body[data-theme="light"] .map-toggle-container {
+    display: none;
+}
+
+/* Map Toggle Button */
+.map-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.map-toggle:hover {
+    border-color: var(--accent-main);
+}
+
+.toggle-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    flex: 1;
+    text-align: left;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Toggle active state */
+.map-toggle[aria-pressed="true"] .toggle-switch {
+    background: var(--accent-main);
+}
+
+.map-toggle[aria-pressed="true"] .toggle-knob {
+    left: 22px;
+    background: var(--bg-main);
+}
+
+.map-toggle[aria-pressed="true"] .toggle-label {
+    color: var(--accent-main);
 }
 
 .map-placeholder {

@@ -143,6 +143,7 @@ function init() {
     setupProjectModal();
     setupScrollBehavior();
     setupEmailObfuscation();
+    setupLightPollutionToggle();
 
     // Check for saved language preference
     const savedLang = localStorage.getItem('sfpl-lang');
@@ -634,9 +635,39 @@ function setupProjectModal() {
         if (carouselSlides) {
             carouselSlides.style.transform = `translateX(-${currentCarouselSlide * 100}%)`;
         }
-        
+
         document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentCarouselSlide);
         });
     }
+}
+
+// Light Pollution Toggle
+function setupLightPollutionToggle() {
+    const toggle = document.getElementById('lightPollutionToggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+        const isPressed = toggle.getAttribute('aria-pressed') === 'true';
+        const newState = !isPressed;
+
+        toggle.setAttribute('aria-pressed', newState.toString());
+        document.body.classList.toggle('light-pollution-active', newState);
+    });
+
+    // Reset toggle when switching to light mode
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'data-theme') {
+                const theme = document.body.getAttribute('data-theme');
+                if (theme === 'light') {
+                    // Reset toggle when switching to light mode
+                    toggle.setAttribute('aria-pressed', 'false');
+                    document.body.classList.remove('light-pollution-active');
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, { attributes: true });
 }
