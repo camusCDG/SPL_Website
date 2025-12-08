@@ -1,0 +1,8 @@
+# Robots.txt for Studio for Public Lighting
+# https://www.publiclighting.de
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.publiclighting.de/sitemap.xml
