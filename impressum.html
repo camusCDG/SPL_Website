@@ -304,6 +304,20 @@
             }
         }
 
+        // Image Protection - Disable context menu on images
+        function setupImageProtection() {
+            document.addEventListener('contextmenu', (e) => {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                }
+            });
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                }
+            });
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             updateLanguage();
@@ -311,6 +325,7 @@
             setupMobileMenu();
             setupThemeToggle();
             setupEmailObfuscation();
+            setupImageProtection();
         });
 
         // Language Toggle
