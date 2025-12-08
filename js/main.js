@@ -144,6 +144,7 @@ function init() {
     setupScrollBehavior();
     setupEmailObfuscation();
     setupLightPollutionToggle();
+    setupImageProtection();
 
     // Check for saved language preference
     const savedLang = localStorage.getItem('sfpl-lang');
@@ -670,4 +671,21 @@ function setupLightPollutionToggle() {
     });
 
     observer.observe(document.body, { attributes: true });
+}
+
+// Image Protection - Disable context menu on images
+function setupImageProtection() {
+    // Use event delegation on document to catch all images including dynamically created ones
+    document.addEventListener('contextmenu', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+
+    // Prevent drag start on images (backup for CSS)
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
 }
