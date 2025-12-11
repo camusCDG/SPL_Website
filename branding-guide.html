@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPL Branding Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0E1116;
+            color: #F2F2F2;
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(200, 161, 101, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #C8A165;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #9CA3AF;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #C8A165;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #F2F2F2;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .color-card {
+            background: #181B21;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .color-swatch {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .color-info {
+            padding: 15px;
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        .color-usage {
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            margin-top: 5px;
+        }
+
+        .font-section {
+            background: #181B21;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .font-sample {
+            margin: 20px 0;
+        }
+
+        .font-weight-row {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .font-weight-label {
+            width: 120px;
+            color: #9CA3AF;
+            font-size: 0.85rem;
+        }
+
+        .font-weight-sample {
+            flex: 1;
+            font-size: 1.5rem;
+        }
+
+        .code-block {
+            background: #0E1116;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        pre {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #F2F2F2;
+            white-space: pre-wrap;
+        }
+
+        .property {
+            color: #C8A165;
+        }
+
+        .value {
+            color: #9CA3AF;
+        }
+
+        .selector {
+            color: #64B5F6;
+        }
+
+        .comment {
+            color: #6B7280;
+        }
+
+        .button-demo {
+            background: #181B21;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Button Styles from SPL */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #F2F2F2;
+            color: #0E1116;
+        }
+
+        .btn-primary:hover {
+            background-color: #1E2229;
+            color: #F2F2F2;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #F2F2F2;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-offset {
+            position: relative;
+            display: inline-block;
+            padding: 16px 32px;
+            background: #181B21;
+            color: #F2F2F2;
+            border: 1px solid #C8A165;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease;
+        }
+
+        .btn-offset::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #C8A165;
+            background: #C8A165;
+            z-index: -1;
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
+        }
+
+        .btn-offset:hover {
+            transform: translate(-4px, -4px);
+            color: #0E1116;
+        }
+
+        .btn-offset:hover::after {
+            opacity: 1;
+            transform: translate(8px, 8px);
+        }
+
+        .theme-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .theme-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .theme-card {
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .theme-card.dark {
+            background: #0E1116;
+        }
+
+        .theme-card.light {
+            background: #F2F1ED;
+            color: #15171C;
+        }
+
+        .theme-card.light h3 {
+            color: #15171C;
+        }
+
+        .theme-card.light .color-hex {
+            color: #64748B;
+        }
+
+        .variable-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .variable-table th,
+        .variable-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .variable-table th {
+            background: #181B21;
+            font-weight: 600;
+            color: #C8A165;
+        }
+
+        .variable-table td:first-child {
+            font-family: monospace;
+            color: #64B5F6;
+        }
+
+        .variable-table td:nth-child(2) {
+            font-family: monospace;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px;
+            background: #181B21;
+            border-radius: 8px;
+            margin-top: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .download-section p {
+            color: #9CA3AF;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SPL Branding Guide</h1>
+            <p class="subtitle">Studio for Public Lighting - Visual Identity System</p>
+        </header>
+
+        <!-- COLORS SECTION -->
+        <section id="colors">
+            <h2>1. Color Palette</h2>
+
+            <h3>Dark Theme (Default)</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0E1116; color: #F2F2F2;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Midnight Carbon</div>
+                        <div class="color-hex">#0E1116</div>
+                        <div class="color-usage">Primary Background</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #181B21; color: #F2F2F2;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Surface</div>
+                        <div class="color-hex">#181B21</div>
+                        <div class="color-usage">Cards, UI Elements</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #C8A165; color: #0E1116;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Burnished Brass</div>
+                        <div class="color-hex">#C8A165</div>
+                        <div class="color-usage">Primary Accent</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #F2F2F2; color: #0E1116;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Off-White</div>
+                        <div class="color-hex">#F2F2F2</div>
+                        <div class="color-usage">Primary Text, Headings</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #9CA3AF; color: #0E1116;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Steel Grey</div>
+                        <div class="color-hex">#9CA3AF</div>
+                        <div class="color-usage">Secondary Text, Body</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1E2229; color: #F2F2F2;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Subtle Surface</div>
+                        <div class="color-hex">#1E2229</div>
+                        <div class="color-usage">Hover States</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Light Theme</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #F2F1ED; color: #15171C;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Architectural Mist</div>
+                        <div class="color-hex">#F2F1ED</div>
+                        <div class="color-usage">Primary Background</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FFFFFF; color: #15171C; border: 1px solid #ddd;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Pure White</div>
+                        <div class="color-hex">#FFFFFF</div>
+                        <div class="color-usage">Cards, Surfaces</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #D8B277; color: #15171C;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Bright Brass</div>
+                        <div class="color-hex">#D8B277</div>
+                        <div class="color-usage">Primary Accent</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #15171C; color: #F2F2F2;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Charcoal</div>
+                        <div class="color-hex">#15171C</div>
+                        <div class="color-usage">Primary Text</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #64748B; color: #F2F2F2;">Aa</div>
+                    <div class="color-info">
+                        <div class="color-name">Warm Slate</div>
+                        <div class="color-hex">#64748B</div>
+                        <div class="color-usage">Secondary Text</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>CSS Variables</h3>
+            <div class="code-block">
+<pre><span class="comment">/* Dark Theme (Default) */</span>
+<span class="selector">body, body[data-theme="dark"]</span> {
+    <span class="property">--bg-main:</span> <span class="value">#0E1116;</span>
+    <span class="property">--bg-surface:</span> <span class="value">#181B21;</span>
+    <span class="property">--text-primary:</span> <span class="value">#F2F2F2;</span>
+    <span class="property">--text-secondary:</span> <span class="value">#9CA3AF;</span>
+    <span class="property">--accent-main:</span> <span class="value">#C8A165;</span>
+    <span class="property">--border-color:</span> <span class="value">rgba(255, 255, 255, 0.08);</span>
+}
+
+<span class="comment">/* Light Theme */</span>
+<span class="selector">body[data-theme="light"]</span> {
+    <span class="property">--bg-main:</span> <span class="value">#F2F1ED;</span>
+    <span class="property">--bg-surface:</span> <span class="value">#FFFFFF;</span>
+    <span class="property">--text-primary:</span> <span class="value">#15171C;</span>
+    <span class="property">--text-secondary:</span> <span class="value">#64748B;</span>
+    <span class="property">--accent-main:</span> <span class="value">#D8B277;</span>
+    <span class="property">--border-color:</span> <span class="value">rgba(0, 0, 0, 0.06);</span>
+}</pre>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY SECTION -->
+        <section id="typography">
+            <h2>2. Typography</h2>
+
+            <div class="font-section">
+                <h3>Primary Font: Poppins</h3>
+                <p style="color: #9CA3AF; margin-bottom: 20px;">A geometric sans-serif typeface providing clean, modern aesthetics.</p>
+
+                <div class="font-sample">
+                    <div class="font-weight-row">
+                        <span class="font-weight-label">Regular (400)</span>
+                        <span class="font-weight-sample" style="font-weight: 400;">The quick brown fox jumps over the lazy dog</span>
+                    </div>
+                    <div class="font-weight-row">
+                        <span class="font-weight-label">Medium (500)</span>
+                        <span class="font-weight-sample" style="font-weight: 500;">The quick brown fox jumps over the lazy dog</span>
+                    </div>
+                    <div class="font-weight-row">
+                        <span class="font-weight-label">Semi-Bold (600)</span>
+                        <span class="font-weight-sample" style="font-weight: 600;">The quick brown fox jumps over the lazy dog</span>
+                    </div>
+                    <div class="font-weight-row">
+                        <span class="font-weight-label">Bold (700)</span>
+                        <span class="font-weight-sample" style="font-weight: 700;">The quick brown fox jumps over the lazy dog</span>
+                    </div>
+                    <div class="font-weight-row">
+                        <span class="font-weight-label">Extra-Bold (800)</span>
+                        <span class="font-weight-sample" style="font-weight: 800;">The quick brown fox jumps over the lazy dog</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>CSS Variables</h3>
+            <div class="code-block">
+<pre><span class="selector">:root</span> {
+    <span class="property">--font-display:</span> <span class="value">'Poppins', sans-serif;</span>
+    <span class="property">--font-body:</span> <span class="value">'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;</span>
+    <span class="property">--font-primary:</span> <span class="value">var(--font-body);</span>
+}</pre>
+            </div>
+
+            <h3>Font Face Declarations</h3>
+            <div class="code-block">
+<pre><span class="selector">@font-face</span> {
+    <span class="property">font-family:</span> <span class="value">'Poppins';</span>
+    <span class="property">src:</span> <span class="value">url('../fonts/Poppins-Regular.woff2') format('woff2');</span>
+    <span class="property">font-weight:</span> <span class="value">400;</span>
+    <span class="property">font-style:</span> <span class="value">normal;</span>
+    <span class="property">font-display:</span> <span class="value">swap;</span>
+}
+
+<span class="selector">@font-face</span> {
+    <span class="property">font-family:</span> <span class="value">'Poppins';</span>
+    <span class="property">src:</span> <span class="value">url('../fonts/Poppins-Medium.woff2') format('woff2');</span>
+    <span class="property">font-weight:</span> <span class="value">500;</span>
+    <span class="property">font-style:</span> <span class="value">normal;</span>
+    <span class="property">font-display:</span> <span class="value">swap;</span>
+}
+
+<span class="selector">@font-face</span> {
+    <span class="property">font-family:</span> <span class="value">'Poppins';</span>
+    <span class="property">src:</span> <span class="value">url('../fonts/Poppins-SemiBold.woff2') format('woff2');</span>
+    <span class="property">font-weight:</span> <span class="value">600;</span>
+    <span class="property">font-style:</span> <span class="value">normal;</span>
+    <span class="property">font-display:</span> <span class="value">swap;</span>
+}
+
+<span class="selector">@font-face</span> {
+    <span class="property">font-family:</span> <span class="value">'Poppins';</span>
+    <span class="property">src:</span> <span class="value">url('../fonts/Poppins-Bold.woff2') format('woff2');</span>
+    <span class="property">font-weight:</span> <span class="value">700;</span>
+    <span class="property">font-style:</span> <span class="value">normal;</span>
+    <span class="property">font-display:</span> <span class="value">swap;</span>
+}
+
+<span class="selector">@font-face</span> {
+    <span class="property">font-family:</span> <span class="value">'Poppins';</span>
+    <span class="property">src:</span> <span class="value">url('../fonts/Poppins-ExtraBold.woff2') format('woff2');</span>
+    <span class="property">font-weight:</span> <span class="value">800;</span>
+    <span class="property">font-style:</span> <span class="value">normal;</span>
+    <span class="property">font-display:</span> <span class="value">swap;</span>
+}</pre>
+            </div>
+        </section>
+
+        <!-- BUTTONS SECTION -->
+        <section id="buttons">
+            <h2>3. Button Styles</h2>
+
+            <!-- Primary Button -->
+            <h3>Primary Button</h3>
+            <div class="button-demo">
+                <button class="btn btn-primary">Primary Button</button>
+            </div>
+            <div class="code-block">
+<pre><span class="selector">.btn</span> {
+    <span class="property">display:</span> <span class="value">inline-flex;</span>
+    <span class="property">align-items:</span> <span class="value">center;</span>
+    <span class="property">gap:</span> <span class="value">12px;</span>
+    <span class="property">padding:</span> <span class="value">14px 28px;</span>
+    <span class="property">font-size:</span> <span class="value">0.9rem;</span>
+    <span class="property">font-weight:</span> <span class="value">500;</span>
+    <span class="property">border-radius:</span> <span class="value">4px;</span>
+    <span class="property">transition:</span> <span class="value">all 0.2s ease;</span>
+}
+
+<span class="selector">.btn-primary</span> {
+    <span class="property">background-color:</span> <span class="value">var(--color-white);</span>
+    <span class="property">color:</span> <span class="value">var(--color-navy-dark);</span>
+}
+
+<span class="selector">.btn-primary:hover</span> {
+    <span class="property">background-color:</span> <span class="value">var(--color-gray-light);</span>
+    <span class="property">transform:</span> <span class="value">translateY(-2px);</span>
+}</pre>
+            </div>
+
+            <!-- Outline Button -->
+            <h3>Outline Button</h3>
+            <div class="button-demo">
+                <button class="btn btn-outline">Outline Button</button>
+            </div>
+            <div class="code-block">
+<pre><span class="selector">.btn-outline</span> {
+    <span class="property">border:</span> <span class="value">1px solid rgba(255, 255, 255, 0.3);</span>
+    <span class="property">color:</span> <span class="value">var(--color-white);</span>
+    <span class="property">background:</span> <span class="value">transparent;</span>
+}
+
+<span class="selector">.btn-outline:hover</span> {
+    <span class="property">background-color:</span> <span class="value">rgba(255, 255, 255, 0.1);</span>
+    <span class="property">border-color:</span> <span class="value">rgba(255, 255, 255, 0.5);</span>
+}</pre>
+            </div>
+
+            <!-- Offset Button (Signature Style) -->
+            <h3>Offset Button (Signature Architectural Animation)</h3>
+            <div class="button-demo">
+                <a href="#" class="btn-offset">Hover Me</a>
+            </div>
+            <div class="code-block">
+<pre><span class="selector">.btn-offset</span> {
+    <span class="property">position:</span> <span class="value">relative;</span>
+    <span class="property">display:</span> <span class="value">inline-block;</span>
+    <span class="property">padding:</span> <span class="value">16px 32px;</span>
+    <span class="property">background:</span> <span class="value">var(--bg-surface);</span>
+    <span class="property">color:</span> <span class="value">var(--text-primary);</span>
+    <span class="property">border:</span> <span class="value">1px solid var(--accent-main);</span>
+    <span class="property">font-family:</span> <span class="value">var(--font-body);</span>
+    <span class="property">font-weight:</span> <span class="value">600;</span>
+    <span class="property">text-transform:</span> <span class="value">uppercase;</span>
+    <span class="property">font-size:</span> <span class="value">0.9rem;</span>
+    <span class="property">letter-spacing:</span> <span class="value">0.05em;</span>
+    <span class="property">cursor:</span> <span class="value">pointer;</span>
+    <span class="property">text-decoration:</span> <span class="value">none;</span>
+    <span class="property">z-index:</span> <span class="value">1;</span>
+    <span class="property">transition:</span> <span class="value">transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease;</span>
+}
+
+<span class="comment">/* The ghost layer that slides out */</span>
+<span class="selector">.btn-offset::after</span> {
+    <span class="property">content:</span> <span class="value">'';</span>
+    <span class="property">position:</span> <span class="value">absolute;</span>
+    <span class="property">top:</span> <span class="value">0;</span>
+    <span class="property">left:</span> <span class="value">0;</span>
+    <span class="property">width:</span> <span class="value">100%;</span>
+    <span class="property">height:</span> <span class="value">100%;</span>
+    <span class="property">border:</span> <span class="value">1px solid var(--accent-main);</span>
+    <span class="property">background:</span> <span class="value">var(--accent-main);</span>
+    <span class="property">z-index:</span> <span class="value">-1;</span>
+    <span class="property">opacity:</span> <span class="value">0;</span>
+    <span class="property">transition:</span> <span class="value">transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;</span>
+}
+
+<span class="comment">/* Hover interaction */</span>
+<span class="selector">.btn-offset:hover</span> {
+    <span class="property">transform:</span> <span class="value">translate(-4px, -4px);</span>
+    <span class="property">color:</span> <span class="value">#0E1116;</span>
+}
+
+<span class="selector">.btn-offset:hover::after</span> {
+    <span class="property">opacity:</span> <span class="value">1;</span>
+    <span class="property">transform:</span> <span class="value">translate(8px, 8px);</span>
+}
+
+<span class="comment">/* Light theme text color on hover */</span>
+<span class="selector">body[data-theme="light"] .btn-offset:hover</span> {
+    <span class="property">color:</span> <span class="value">#15171C;</span>
+}</pre>
+            </div>
+        </section>
+
+        <!-- ANIMATION VARIABLES -->
+        <section id="animations">
+            <h2>4. Animation & Transition Variables</h2>
+
+            <table class="variable-table">
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Value</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--ease-architectural</td>
+                        <td>cubic-bezier(0.25, 1, 0.5, 1)</td>
+                        <td>Signature animation easing</td>
+                    </tr>
+                    <tr>
+                        <td>--anim-speed</td>
+                        <td>0.3s</td>
+                        <td>Primary animation duration</td>
+                    </tr>
+                    <tr>
+                        <td>--transition-fast</td>
+                        <td>0.2s ease</td>
+                        <td>Quick micro-interactions</td>
+                    </tr>
+                    <tr>
+                        <td>--transition-medium</td>
+                        <td>0.3s ease</td>
+                        <td>Standard transitions</td>
+                    </tr>
+                    <tr>
+                        <td>--transition-slow</td>
+                        <td>0.5s ease</td>
+                        <td>Larger element transitions</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+<pre><span class="selector">:root</span> {
+    <span class="property">--ease-architectural:</span> <span class="value">cubic-bezier(0.25, 1, 0.5, 1);</span>
+    <span class="property">--anim-speed:</span> <span class="value">0.3s;</span>
+    <span class="property">--transition-fast:</span> <span class="value">0.2s ease;</span>
+    <span class="property">--transition-medium:</span> <span class="value">0.3s ease;</span>
+    <span class="property">--transition-slow:</span> <span class="value">0.5s ease;</span>
+}</pre>
+            </div>
+        </section>
+
+        <!-- LAYOUT VARIABLES -->
+        <section id="layout">
+            <h2>5. Layout Variables</h2>
+
+            <table class="variable-table">
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Value</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--nav-height</td>
+                        <td>80px</td>
+                        <td>Desktop navigation height</td>
+                    </tr>
+                    <tr>
+                        <td>--nav-height-mobile</td>
+                        <td>60px</td>
+                        <td>Mobile navigation height</td>
+                    </tr>
+                    <tr>
+                        <td>--footer-height</td>
+                        <td>50px</td>
+                        <td>Footer height</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section id="quick-reference">
+            <h2>6. Quick Reference</h2>
+
+            <div class="theme-section">
+                <div class="theme-card dark">
+                    <h3>Dark Theme Colors</h3>
+                    <p style="margin: 10px 0;"><strong>Background:</strong> <span class="color-hex">#0E1116</span></p>
+                    <p style="margin: 10px 0;"><strong>Surface:</strong> <span class="color-hex">#181B21</span></p>
+                    <p style="margin: 10px 0;"><strong>Accent:</strong> <span class="color-hex">#C8A165</span></p>
+                    <p style="margin: 10px 0;"><strong>Text Primary:</strong> <span class="color-hex">#F2F2F2</span></p>
+                    <p style="margin: 10px 0;"><strong>Text Secondary:</strong> <span class="color-hex">#9CA3AF</span></p>
+                </div>
+                <div class="theme-card light">
+                    <h3>Light Theme Colors</h3>
+                    <p style="margin: 10px 0;"><strong>Background:</strong> <span class="color-hex">#F2F1ED</span></p>
+                    <p style="margin: 10px 0;"><strong>Surface:</strong> <span class="color-hex">#FFFFFF</span></p>
+                    <p style="margin: 10px 0;"><strong>Accent:</strong> <span class="color-hex">#D8B277</span></p>
+                    <p style="margin: 10px 0;"><strong>Text Primary:</strong> <span class="color-hex">#15171C</span></p>
+                    <p style="margin: 10px 0;"><strong>Text Secondary:</strong> <span class="color-hex">#64748B</span></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="download-section">
+            <h3>Download This Guide</h3>
+            <p>Save this page (Ctrl+S / Cmd+S) to keep a local copy of this branding guide.</p>
+            <a href="#" class="btn-offset" onclick="window.print(); return false;">PRINT / SAVE AS PDF</a>
+        </div>
+
+        <footer>
+            <p>SPL Branding Guide | Studio for Public Lighting</p>
+            <p style="margin-top: 10px;">Design Philosophy: Architectural Precision, Organic Warmth</p>
+        </footer>
+    </div>
+</body>
+</html>
